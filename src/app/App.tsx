@@ -1,5 +1,20 @@
+// Custome Hook
+import useRandomFact from "../customeHook/useRandomeFact"
+import useRandomCat from "../customeHook/useRandomeCat"
+
 export default function App() {
+    const { fact, handleRandomFact } = useRandomFact()
+    const { urlRandomCat } = useRandomCat(fact)
+
+    const handleRefreshCat = () => {
+        handleRandomFact()
+    }
+
     return(
-        <h1>App</h1>
+        <main>
+            <button onClick={handleRefreshCat}>Get Random Cat</button>
+            <h1>{fact && <p>{fact}</p>}</h1>
+            {urlRandomCat && <img src={urlRandomCat} alt="Obtener random cat with three first words, by id." />}
+        </main>
     )
 }
